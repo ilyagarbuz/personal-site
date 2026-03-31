@@ -58,7 +58,10 @@ function formatDate(d: Date) {
         </section>
 
         <section class="section" aria-labelledby="projects-heading">
-          <h2 id="projects-heading" class="section__title">Working on</h2>
+          <h2 id="projects-heading" class="section__title">
+            Working on
+            <span class="section__title-divider"></span>
+          </h2>
           <div class="projects-grid">
             {
               projects.map((p) => {
@@ -132,6 +135,7 @@ function formatDate(d: Date) {
         <section class="section" aria-labelledby="experience-heading">
           <h2 id="experience-heading" class="section__title">
             Work experience
+            <span class="section__title-divider"></span>
           </h2>
           <div class="experience-list">
             {
@@ -156,7 +160,10 @@ function formatDate(d: Date) {
         </section>
 
         <section class="section" aria-labelledby="toolkit-heading">
-          <h2 id="toolkit-heading" class="section__title">Toolkit</h2>
+          <h2 id="toolkit-heading" class="section__title">
+            Toolkit
+            <span class="section__title-divider"></span>
+          </h2>
           <div class="toolkit-grid">
             {
               toolkit.map((cat) => (
@@ -174,7 +181,10 @@ function formatDate(d: Date) {
         </section>
 
         <section class="section" aria-labelledby="blog-heading">
-          <h2 id="blog-heading" class="section__title">Blog</h2>
+          <h2 id="blog-heading" class="section__title">
+            Blog
+            <span class="section__title-divider"></span>
+          </h2>
           <div class="blog-preview">
             {
               latestPosts.map((post) => (
