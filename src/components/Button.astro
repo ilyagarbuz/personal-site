@@ -1,15 +1,22 @@
 ---
 import "./Button.css";
+import { Download } from "@lucide/astro";
 
 interface Props {
   href: string;
   variant?: "primary" | "ghost";
   download?: boolean | string;
+  icon?: "download";
 }
 
-const { href, variant = "primary", download } = Astro.props;
+const { href, variant = "primary", download, icon } = Astro.props;
 ---
 
-<a class:list={["btn", variant === "ghost" && "btn--ghost"]} href={href} download={download}>
+<a
+  class:list={["btn", variant === "ghost" && "btn--ghost"]}
+  href={href}
+  download={download}
+>
   <slot />
+  {icon === "download" && <Download size={16} />}
 </a>
