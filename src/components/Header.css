@@ -73,7 +73,6 @@
 .site-header__link:hover {
   background: var(--color-surface);
   color: var(--color-accent);
-  transform: translateY(-1px);
 }
 
 .site-header--scrolled .site-header__inner {
