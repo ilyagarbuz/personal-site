@@ -5,7 +5,14 @@ import Footer from "../components/Footer.astro";
 import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
 import "../styles/home.css";
-import { LayoutDashboard, Server, Sparkles, ExternalLink, GitFork, Lock } from "@lucide/astro";
+import {
+  LayoutDashboard,
+  Server,
+  Sparkles,
+  ExternalLink,
+  GitFork,
+  Lock,
+} from "@lucide/astro";
 import { getCollection } from "astro:content";
 import { projects } from "../data/projects";
 import { experience } from "../data/experience";
@@ -40,10 +47,14 @@ function formatDate(d: Date) {
           <h1 id="hero-name" class="hero__name">Ilya Garbuz</h1>
           <p class="hero__role">Full Stack Developer</p>
           <p class="hero__lede">
-            Crafting scalable web applications with modern tools: resilient APIs, polished interfaces,
-            and deployments you can reason about.
+            Crafting scalable web applications with modern tools: resilient
+            APIs, polished interfaces, and deployments you can reason about.
           </p>
-          <Button href="/ilya_garbuz_cv.pdf" download="ilya_garbuz_cv.pdf">Download Resume</Button>
+          <Button
+            href="/ilya_garbuz_cv.pdf"
+            download="ilya_garbuz_cv.pdf"
+            icon="download">Download Resume</Button
+          >
         </section>
 
         <section class="section" aria-labelledby="projects-heading">
@@ -56,7 +67,11 @@ function formatDate(d: Date) {
                   <Card>
                     <div class="project-card__head">
                       <div class="project-card__title-row">
-                        <Icon size={22} stroke-width={1.65} aria-hidden="true" />
+                        <Icon
+                          size={22}
+                          stroke-width={1.65}
+                          aria-hidden="true"
+                        />
                         <h3 class="project-card__title">{p.title}</h3>
                       </div>
                       <div class="project-card__actions">
@@ -68,7 +83,11 @@ function formatDate(d: Date) {
                             rel="noopener noreferrer"
                             aria-label={`${p.title} on GitHub`}
                           >
-                            <GitFork size={18} stroke-width={1.75} aria-hidden="true" />
+                            <GitFork
+                              size={18}
+                              stroke-width={1.75}
+                              aria-hidden="true"
+                            />
                           </a>
                         ) : null}
                         {p.links.type === "external" && p.links.href ? (
@@ -79,12 +98,24 @@ function formatDate(d: Date) {
                             rel="noopener noreferrer"
                             aria-label={`Open ${p.title}`}
                           >
-                            <ExternalLink size={18} stroke-width={1.75} aria-hidden="true" />
+                            <ExternalLink
+                              size={18}
+                              stroke-width={1.75}
+                              aria-hidden="true"
+                            />
                           </a>
                         ) : null}
                         {p.links.type === "private" ? (
-                          <span class="project-card__icon-btn" role="img" aria-label="Private repository">
-                            <Lock size={18} stroke-width={1.75} aria-hidden="true" />
+                          <span
+                            class="project-card__icon-btn"
+                            role="img"
+                            aria-label="Private repository"
+                          >
+                            <Lock
+                              size={18}
+                              stroke-width={1.75}
+                              aria-hidden="true"
+                            />
                           </span>
                         ) : null}
                       </div>
@@ -99,7 +130,9 @@ function formatDate(d: Date) {
         </section>
 
         <section class="section" aria-labelledby="experience-heading">
-          <h2 id="experience-heading" class="section__title">Work experience</h2>
+          <h2 id="experience-heading" class="section__title">
+            Work experience
+          </h2>
           <div class="experience-list">
             {
               experience.map((job) => (
@@ -147,7 +180,8 @@ function formatDate(d: Date) {
               latestPosts.map((post) => (
                 <Card class="blog-preview__card">
                   <p class="blog-card__meta">
-                    {formatDate(post.data.pubDate)} · {post.data.readingTime} min read
+                    {formatDate(post.data.pubDate)} · {post.data.readingTime}{" "}
+                    min read
                   </p>
                   <h3>{post.data.title}</h3>
                   <p>{post.data.description}</p>

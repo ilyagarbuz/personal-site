@@ -14,8 +14,9 @@
 
 .hero__role {
   margin: 0 0 1rem;
-  font-size: clamp(1.15rem, 3vw, 1.45rem);
-  font-weight: 600;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 400;
+  font-family: "Geist Mono", ui-monospace, monospace;
   letter-spacing: -0.02em;
   color: var(--color-text-muted);
 }
@@ -23,7 +24,7 @@
 .hero__lede {
   margin: 0 0 1.5rem;
   max-width: 42ch;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   color: var(--color-text-muted);
 }
 
@@ -71,9 +72,7 @@
   height: 2rem;
   border-radius: 0.45rem;
   color: var(--color-text-muted);
-  transition:
-    color 0.15s ease,
-    background-color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .project-card__icon-btn:hover {
