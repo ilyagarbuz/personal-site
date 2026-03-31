@@ -78,49 +78,49 @@ function formatDate(d: Date) {
                         <h3 class="project-card__title">{p.title}</h3>
                       </div>
                       <div class="project-card__actions">
-                        {p.links.type === "github" && p.links.href ? (
-                          <a
-                            class="project-card__icon-btn"
-                            href={p.links.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${p.title} on GitHub`}
-                          >
-                            <GitFork
-                              size={18}
-                              stroke-width={1.75}
-                              aria-hidden="true"
-                            />
-                          </a>
-                        ) : null}
-                        {p.links.type === "external" && p.links.href ? (
-                          <a
-                            class="project-card__icon-btn"
-                            href={p.links.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Open ${p.title}`}
-                          >
-                            <ExternalLink
-                              size={18}
-                              stroke-width={1.75}
-                              aria-hidden="true"
-                            />
-                          </a>
-                        ) : null}
-                        {p.links.type === "private" ? (
-                          <span
-                            class="project-card__icon-btn"
-                            role="img"
-                            aria-label="Private repository"
-                          >
-                            <Lock
-                              size={18}
-                              stroke-width={1.75}
-                              aria-hidden="true"
-                            />
-                          </span>
-                        ) : null}
+                        {p.links.map((link) =>
+                          link.type === "github" && link.href ? (
+                            <a
+                              class="project-card__icon-btn"
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${p.title} on GitHub`}
+                            >
+                              <GitFork
+                                size={18}
+                                stroke-width={1.75}
+                                aria-hidden="true"
+                              />
+                            </a>
+                          ) : link.type === "external" && link.href ? (
+                            <a
+                              class="project-card__icon-btn"
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`Open ${p.title}`}
+                            >
+                              <ExternalLink
+                                size={18}
+                                stroke-width={1.75}
+                                aria-hidden="true"
+                              />
+                            </a>
+                          ) : link.type === "private" ? (
+                            <span
+                              class="project-card__icon-btn"
+                              role="img"
+                              aria-label="Private repository"
+                            >
+                              <Lock
+                                size={18}
+                                stroke-width={1.75}
+                                aria-hidden="true"
+                              />
+                            </span>
+                          ) : null
+                        )}
                       </div>
                     </div>
                     <p class="project-card__desc">{p.description}</p>
