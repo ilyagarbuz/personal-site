@@ -1,0 +1,58 @@
+---
+import "./Header.css";
+import { GitFork, Link2, Mail } from "@lucide/astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { social } from "../data/social";
+---
+
+<div class="header-sentinel" aria-hidden="true"></div>
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <a class="site-header__logo" href="/">IG</a>
+    <div class="site-header__actions">
+      <a
+        class="site-header__link"
+        href={social.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub profile"
+      >
+        <GitFork size={20} stroke-width={1.75} aria-hidden="true" />
+      </a>
+      <a
+        class="site-header__link"
+        href={social.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn profile"
+      >
+        <Link2 size={20} stroke-width={1.75} aria-hidden="true" />
+      </a>
+      <a class="site-header__link" href={social.email} aria-label="Send email">
+        <Mail size={20} stroke-width={1.75} aria-hidden="true" />
+      </a>
+      <span class="site-header__sep" aria-hidden="true">|</span>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    const header = document.querySelector("[data-site-header]");
+    const sentinel = document.querySelector(".header-sentinel");
+    if (!header || !sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        header.classList.toggle("site-header--scrolled", !entry.isIntersecting);
+      },
+      { root: null, threshold: 0, rootMargin: "0px 0px 0px 0px" },
+    );
+
+    observer.observe(sentinel);
+  }
+
+  initHeader();
+  document.addEventListener("astro:after-swap", initHeader);
+</script>

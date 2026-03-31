@@ -1,0 +1,208 @@
+/* Fonts */
+@font-face {
+  font-family: "Geist";
+  src: url("../assets/fonts/GeistVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../assets/fonts/GeistMonoVF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editorial";
+  src: url("../assets/fonts/PPEditorialNew-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Editorial Ultra";
+  src: url("../assets/fonts/PPEditorialNew-Ultrabold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Theme tokens */
+[data-theme="light"] {
+  color-scheme: light;
+  --color-text: #14120f;
+  --color-text-muted: #5c574f;
+  --color-bg: #f3f1ec;
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-strong: #ffffff;
+  --color-border: rgba(20, 18, 15, 0.12);
+  --color-border-strong: rgba(20, 18, 15, 0.2);
+  --color-accent: #2d6a4f;
+  --color-accent-hover: #1b4332;
+  --header-compact-bg: rgba(255, 255, 255, 0.85);
+  --focus-ring: 0 0 0 3px rgba(45, 106, 79, 0.35);
+  --body-gradient:
+    radial-gradient(ellipse 120% 80% at 10% -10%, rgba(45, 106, 79, 0.12), transparent 55%),
+    radial-gradient(circle at 92% 8%, rgba(212, 163, 115, 0.16), transparent 45%),
+    var(--color-bg);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: #f2efe8;
+  --color-text-muted: #a39e92;
+  --color-bg: #121110;
+  --color-surface: rgba(35, 33, 30, 0.65);
+  --color-surface-strong: #1e1c19;
+  --color-border: rgba(242, 239, 232, 0.1);
+  --color-border-strong: rgba(242, 239, 232, 0.18);
+  --color-accent: #7ce3ac;
+  --color-accent-hover: #9cf0c4;
+  --header-compact-bg: rgba(30, 28, 25, 0.88);
+  --focus-ring: 0 0 0 3px rgba(124, 227, 172, 0.35);
+  --body-gradient:
+    radial-gradient(ellipse 100% 70% at 12% 0%, rgba(124, 227, 172, 0.08), transparent 50%),
+    radial-gradient(circle at 88% 12%, rgba(212, 163, 115, 0.1), transparent 42%),
+    var(--color-bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Geist, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: var(--body-gradient);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.section {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+
+.section__title {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.35rem, 3vw, 1.6rem);
+  letter-spacing: -0.02em;
+}
+
+.prose {
+  max-width: 65ch;
+}
+
+.prose :where(h1, h2, h3) {
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+
+.prose :where(p, ul, ol) {
+  margin: 0.85em 0;
+}
+
+.prose pre {
+  margin: 1.25em 0;
+  padding: 1rem 1.15rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+}
+
+.prose code {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  padding: 0.12em 0.35em;
+  border-radius: 0.35rem;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border);
+}
+
+.prose pre code {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.25em 0;
+  border: 1px solid var(--color-border);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0.5rem;
+  z-index: 2000;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

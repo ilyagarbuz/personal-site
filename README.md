@@ -4,4 +4,3 @@
 
 - Astro
 - TypeScript
-- Tailwind CSS

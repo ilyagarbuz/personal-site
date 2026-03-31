@@ -1,0 +1,110 @@
+.header-sentinel {
+  position: relative;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-block: clamp(0.65rem, 2vw, 1rem);
+  transition:
+    padding 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: clamp(0.45rem, 1.5vw, 0.65rem) clamp(1rem, 4vw, 1.5rem);
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+  transition:
+    max-width 0.35s ease,
+    width 0.35s ease,
+    padding 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.site-header__logo {
+  font-family: "Editorial Ultra", serif;
+  font-weight: 800;
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.site-header__logo:focus-visible {
+  border-radius: 0.4rem;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.site-header__sep {
+  margin-inline: 0.15rem;
+  color: var(--color-text-muted);
+  user-select: none;
+}
+
+.site-header__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  color: var(--color-text);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.site-header__link:hover {
+  background: var(--color-surface);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.site-header--scrolled .site-header__inner {
+  width: fit-content;
+  max-width: min(500px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding-inline: clamp(0.9rem, 3vw, 1.35rem);
+  background: var(--header-compact-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .site-header--scrolled .site-header__inner {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+}
+
+.site-header--scrolled .site-header__inner {
+  gap: clamp(0.35rem, 2vw, 0.75rem);
+}
+
+.site-header--scrolled .site-header__logo {
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+}

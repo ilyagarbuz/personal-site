@@ -1,0 +1,15 @@
+---
+import "./Button.css";
+
+interface Props {
+  href: string;
+  variant?: "primary" | "ghost";
+  download?: boolean | string;
+}
+
+const { href, variant = "primary", download } = Astro.props;
+---
+
+<a class:list={["btn", variant === "ghost" && "btn--ghost"]} href={href} download={download}>
+  <slot />
+</a>

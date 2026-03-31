@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+import "../styles/home.css";
+import { LayoutDashboard, Server, Sparkles, ExternalLink, GitFork, Lock } from "@lucide/astro";
+import { getCollection } from "astro:content";
+import { projects } from "../data/projects";
+import { experience } from "../data/experience";
+import { toolkit } from "../data/toolkit";
+
+const projectIcons = {
+  layout: LayoutDashboard,
+  server: Server,
+  sparkles: Sparkles,
+} as const;
+
+const allPosts = await getCollection("blog");
+const latestPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<BaseLayout title="Ilya Garbuz — Full Stack Developer">
+  <div class="page">
+    <Header />
+    <main id="main">
+      <div class="container">
+        <section class="section hero" aria-labelledby="hero-name">
+          <h1 id="hero-name" class="hero__name">Ilya Garbuz</h1>
+          <p class="hero__role">Full Stack Developer</p>
+          <p class="hero__lede">
+            Crafting scalable web applications with modern tools: resilient APIs, polished interfaces,
+            and deployments you can reason about.
+          </p>
+          <Button href="/ilya_garbuz_cv.pdf" download="ilya_garbuz_cv.pdf">Download Resume</Button>
+        </section>
+
+        <section class="section" aria-labelledby="projects-heading">
+          <h2 id="projects-heading" class="section__title">Working on</h2>
+          <div class="projects-grid">
+            {
+              projects.map((p) => {
+                const Icon = projectIcons[p.icon];
+                return (
+                  <Card>
+                    <div class="project-card__head">
+                      <div class="project-card__title-row">
+                        <Icon size={22} stroke-width={1.65} aria-hidden="true" />
+                        <h3 class="project-card__title">{p.title}</h3>
+                      </div>
+                      <div class="project-card__actions">
+                        {p.links.type === "github" && p.links.href ? (
+                          <a
+                            class="project-card__icon-btn"
+                            href={p.links.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${p.title} on GitHub`}
+                          >
+                            <GitFork size={18} stroke-width={1.75} aria-hidden="true" />
+                          </a>
+                        ) : null}
+                        {p.links.type === "external" && p.links.href ? (
+                          <a
+                            class="project-card__icon-btn"
+                            href={p.links.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${p.title}`}
+                          >
+                            <ExternalLink size={18} stroke-width={1.75} aria-hidden="true" />
+                          </a>
+                        ) : null}
+                        {p.links.type === "private" ? (
+                          <span class="project-card__icon-btn" role="img" aria-label="Private repository">
+                            <Lock size={18} stroke-width={1.75} aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </div>
+                    </div>
+                    <p class="project-card__desc">{p.description}</p>
+                    <p class="project-card__tags">{p.tags}</p>
+                  </Card>
+                );
+              })
+            }
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="experience-heading">
+          <h2 id="experience-heading" class="section__title">Work experience</h2>
+          <div class="experience-list">
+            {
+              experience.map((job) => (
+                <Card>
+                  <div class="experience-card__head">
+                    <div>
+                      <h3 class="experience-card__role">{job.role}</h3>
+                      <p class="experience-card__company">{job.company}</p>
+                    </div>
+                    <p class="experience-card__period">{job.period}</p>
+                  </div>
+                  <ul class="experience-card__list">
+                    {job.duties.map((duty) => (
+                      <li>{duty}</li>
+                    ))}
+                  </ul>
+                </Card>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="toolkit-heading">
+          <h2 id="toolkit-heading" class="section__title">Toolkit</h2>
+          <div class="toolkit-grid">
+            {
+              toolkit.map((cat) => (
+                <Card>
+                  <h3 class="toolkit-card__title">{cat.title}</h3>
+                  <div class="toolkit-card__list">
+                    {cat.items.map((item) => (
+                      <span class="toolkit-chip">{item}</span>
+                    ))}
+                  </div>
+                </Card>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="blog-heading">
+          <h2 id="blog-heading" class="section__title">Blog</h2>
+          <div class="blog-preview">
+            {
+              latestPosts.map((post) => (
+                <Card class="blog-preview__card">
+                  <p class="blog-card__meta">
+                    {formatDate(post.data.pubDate)} · {post.data.readingTime} min read
+                  </p>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                  <div class="blog-card__actions">
+                    <Button href={`/blog/${post.slug}/`} variant="ghost">
+                      Read more
+                    </Button>
+                  </div>
+                </Card>
+              ))
+            }
+          </div>
+          <p class="section-footer-link">
+            <a href="/blog/">View all posts</a>
+          </p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

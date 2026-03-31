@@ -1,0 +1,80 @@
+---
+import { Moon, Sun } from "@lucide/astro";
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  data-theme-toggle
+  aria-label="Switch to dark theme"
+  aria-pressed="false"
+>
+  <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"><Sun size={20} stroke-width={1.75} /></span>
+  <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"><Moon size={20} stroke-width={1.75} /></span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .theme-toggle:hover {
+    background: var(--color-surface);
+  }
+
+  .theme-toggle__icon--moon {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle__icon--sun {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-toggle__icon--moon {
+    display: inline-flex;
+  }
+</style>
+
+<script>
+  const KEY = "site-theme";
+
+  function labelFor(theme: string) {
+    return theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  }
+
+  function syncButton(btn: HTMLButtonElement) {
+    const root = document.documentElement;
+    const theme = root.dataset.theme === "dark" ? "dark" : "light";
+    btn.setAttribute("aria-label", labelFor(theme));
+    btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((btn) => {
+    syncButton(btn);
+    btn.addEventListener("click", () => {
+      const root = document.documentElement;
+      const next = root.dataset.theme === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      localStorage.setItem(KEY, next);
+      syncButton(btn);
+    });
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach(syncButton);
+  });
+</script>
