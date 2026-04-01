@@ -1,8 +1,10 @@
 ---
 import "./Header.css";
-import { GitFork, Link2, Mail } from "@lucide/astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import { social } from "../data/social";
+import GithubIcon from "../assets/icons/github.svg";
+import LinkedinIcon from "../assets/icons/linkedin.svg";
+import MailIcon from "../assets/icons/mail.svg";
 ---
 
 <div class="header-sentinel" aria-hidden="true"></div>
@@ -17,7 +19,12 @@ import { social } from "../data/social";
         rel="noopener noreferrer"
         aria-label="GitHub profile"
       >
-        <GitFork size={20} stroke-width={1.75} aria-hidden="true" />
+        <GithubIcon
+          width={20}
+          height={20}
+          fill="currentColor"
+          aria-hidden="true"
+        />
       </a>
       <a
         class="site-header__link"
@@ -26,10 +33,20 @@ import { social } from "../data/social";
         rel="noopener noreferrer"
         aria-label="LinkedIn profile"
       >
-        <Link2 size={20} stroke-width={1.75} aria-hidden="true" />
+        <LinkedinIcon
+          width={20}
+          height={20}
+          fill="currentColor"
+          aria-hidden="true"
+        />
       </a>
       <a class="site-header__link" href={social.email} aria-label="Send email">
-        <Mail size={20} stroke-width={1.75} aria-hidden="true" />
+        <MailIcon
+          width={20}
+          height={20}
+          fill="currentColor"
+          aria-hidden="true"
+        />
       </a>
       <span class="site-header__sep" aria-hidden="true">|</span>
       <ThemeToggle />
@@ -47,7 +64,7 @@ import { social } from "../data/social";
       ([entry]) => {
         header.classList.toggle("site-header--scrolled", !entry.isIntersecting);
       },
-      { root: null, threshold: 0, rootMargin: "0px 0px 0px 0px" },
+      { root: null, threshold: 0, rootMargin: "0px 0px 0px 0px" }
     );
 
     observer.observe(sentinel);

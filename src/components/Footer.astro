@@ -1,12 +1,16 @@
 ---
 import "./Footer.css";
-import { GitFork, Link2, Mail } from "@lucide/astro";
+import GithubIcon from "../assets/icons/github.svg";
+import LinkedinIcon from "../assets/icons/linkedin.svg";
+import MailIcon from "../assets/icons/mail.svg";
 import { social } from "../data/social";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p class="site-footer__copy">© 2026 Ilya Garbuz</p>
+    <p class="site-footer__copy">© {currentYear} Ilya Garbuz</p>
     <nav class="site-footer__links" aria-label="Social links">
       <a
         class="site-footer__link"
@@ -15,7 +19,7 @@ import { social } from "../data/social";
         rel="noopener noreferrer"
         aria-label="GitHub profile"
       >
-        <GitFork size={20} stroke-width={1.75} aria-hidden="true" />
+        <GithubIcon width={20} height={20} aria-hidden="true" />
       </a>
       <a
         class="site-footer__link"
@@ -24,10 +28,10 @@ import { social } from "../data/social";
         rel="noopener noreferrer"
         aria-label="LinkedIn profile"
       >
-        <Link2 size={20} stroke-width={1.75} aria-hidden="true" />
+        <LinkedinIcon width={20} height={20} aria-hidden="true" />
       </a>
       <a class="site-footer__link" href={social.email} aria-label="Send email">
-        <Mail size={20} stroke-width={1.75} aria-hidden="true" />
+        <MailIcon width={20} height={20} aria-hidden="true" />
       </a>
     </nav>
   </div>
