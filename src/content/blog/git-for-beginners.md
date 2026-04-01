@@ -1,5 +1,6 @@
 ---
 title: 'Git for Beginners: How I Stopped Breaking Into a Cold Sweat at the Word "Merge Conflict"'
+ogTitle: "Git for Beginners Guide"
 description: "A plain-language intro to Git for new developers: what version control is, how to install it, and the commands you need to commit, branch, and collaborate without the jargon."
 pubDate: 2026-04-1
 readingTime: 8
