@@ -9,14 +9,14 @@ export interface Project {
   title: string;
   description: string;
   tags: string;
-  icon: "layout" | "server" | "sparkles";
+  icon: "layout" | "server" | "sparkles" | "wallet" | "store";
   links: ProjectLink[];
 }
 
 export const projects: Project[] = [
   {
     title: "Transistor",
-    description: `Full-stack development of a B2B platform for LED lighting equipment (transistor.ru). Delivered end-to-end development and maintenance of the website, featuring a catalog with 10,000+ SKUs. Key functionality includes building automated compatibility tools for selecting matching components (profile + LED strip + power supply), helping minimize errors during order assembly. Designed and implemented a multi-functional personal account with customizable UI tailored to client needs, enabling the generation of commercial proposals (export to PDF/Excel) and price list management. Integrated the platform with 1C for real-time synchronization of stock levels (>90% of items in stock) and pricing.`,
+    description: `Full-stack development of a B2B platform for LED lighting equipment. Delivered end-to-end development and maintenance of the website, featuring a catalog with 10,000+ SKUs. Key functionality includes building automated compatibility tools for selecting matching components (profile + LED strip + power supply), helping minimize errors during order assembly. Designed and implemented a multi-functional personal account with customizable UI tailored to client needs, enabling the generation of commercial proposals (export to PDF/Excel) and price list management. Integrated the platform with 1C for real-time synchronization of stock levels (>90% of items in stock) and pricing.`,
     tags: "Web App • E-commerce • Nuxt • Node.js • MongoDB",
     icon: "layout",
     links: [
@@ -26,9 +26,9 @@ export const projects: Project[] = [
   },
   {
     title: "Arlight",
-    description: `Full-stack development of a corporate B2B website for a premium LED lighting manufacturer (arlight.ru). Developed and maintained the flagship corporate website for Arlight, a market leader with over 25 years of history and a product range of 10,000+ SKUs. Implemented key marketing and partnership functionalities, including a loyalty program portal for designers ("My.Arlight") to support wholesale and project-based sales. Built an educational content hub featuring webinars, training videos, and certified programs to support the company’s partner training initiatives. Integrated modules for multi-channel customer support and service management, ensuring seamless access to technical documentation and product information for B2B clients.`,
+    description: `Full-stack development of a corporate B2B website for a premium LED lighting manufacturer. Developed and maintained the flagship corporate website for Arlight, a market leader with over 25 years of history and a product range of 10,000+ SKUs. Implemented key marketing and partnership functionalities, including a loyalty program portal for designers ("My.Arlight") to support wholesale and project-based sales. Built an educational content hub featuring webinars, training videos, and certified programs to support the company’s partner training initiatives. Integrated modules for multi-channel customer support and service management, ensuring seamless access to technical documentation and product information for B2B clients.`,
     tags: "Web App • E-commerce • Nuxt • Node.js • MongoDB",
-    icon: "layout",
+    icon: "store",
     links: [
       { type: "private" },
       { type: "external", href: "https://arlight.ru/" },
@@ -43,7 +43,7 @@ Containerized the stack with Docker Compose (MongoDB, API, static frontend behin
 Added an automated backup service with scheduled dumps, archiving, and a Telegram bot for on-demand backups and status (extends the product beyond CRUD into ops).
     `,
     tags: "TypeScript · Vue 3 · Element Plus · Node.js · Express · MongoDB · Mongoose · Docker · Nginx · Chart.js ",
-    icon: "sparkles",
+    icon: "wallet",
     links: [
       { type: "private" },
       { type: "external", href: "https://cashcontrol.work.gd/" },

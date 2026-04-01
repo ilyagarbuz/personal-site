@@ -10,9 +10,11 @@ import {
   Server,
   Sparkles,
   ExternalLink,
-  GitFork,
   Lock,
+  Wallet,
+  Store,
 } from "@lucide/astro";
+import GithubIcon from "../assets/icons/github.svg";
 import { getCollection } from "astro:content";
 import { projects } from "../data/projects";
 import { experience } from "../data/experience";
@@ -22,6 +24,8 @@ const projectIcons = {
   layout: LayoutDashboard,
   server: Server,
   sparkles: Sparkles,
+  wallet: Wallet,
+  store: Store,
 } as const;
 
 const allPosts = await getCollection("blog");
@@ -87,9 +91,9 @@ function formatDate(d: Date) {
                               rel="noopener noreferrer"
                               aria-label={`${p.title} on GitHub`}
                             >
-                              <GitFork
-                                size={18}
-                                stroke-width={1.75}
+                              <GithubIcon
+                                width={18}
+                                height={18}
                                 aria-hidden="true"
                               />
                             </a>
