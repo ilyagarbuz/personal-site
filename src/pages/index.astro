@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
+import { Image } from "astro:assets";
+import profileImage from "../assets/images/profile_image.jpg";
 import "../styles/home.css";
 import {
   LayoutDashboard,
@@ -49,17 +51,30 @@ function formatDate(d: Date) {
     <main id="main">
       <div class="container">
         <section class="section hero" aria-labelledby="hero-name">
-          <h1 id="hero-name" class="hero__name">Ilya Garbuz</h1>
-          <p class="hero__role">Full Stack Developer</p>
-          <p class="hero__lede">
-            Crafting scalable web applications with modern tools: resilient
-            APIs, polished interfaces, and deployments you can reason about.
-          </p>
-          <Button
-            href="/ilya_garbuz_cv.pdf"
-            download="ilya_garbuz_cv.pdf"
-            icon="download">Download Resume</Button
-          >
+          <div class="hero__inner">
+            <div class="hero__content">
+              <h1 id="hero-name" class="hero__name">Ilya Garbuz</h1>
+              <p class="hero__role">Full Stack Developer</p>
+              <p class="hero__lede">
+                Crafting scalable web applications with modern tools: resilient
+                APIs, polished interfaces, and deployments you can reason about.
+              </p>
+              <Button
+                href="/ilya_garbuz_cv.pdf"
+                download="ilya_garbuz_cv.pdf"
+                icon="download">Download Resume</Button
+              >
+            </div>
+            <div class="hero__media">
+              <Image
+                src={profileImage}
+                alt="Ilya Garbuz"
+                class="hero__photo"
+                width={500}
+                height={500}
+              />
+            </div>
+          </div>
         </section>
 
         <section class="section" aria-labelledby="projects-heading">
