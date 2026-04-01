@@ -9,6 +9,7 @@ interface OgImage {
 
 interface Props {
   title: string;
+  ogTitle?: string;
   description?: string;
   ogType?: "website" | "article";
   ogImage?: OgImage;
@@ -17,11 +18,14 @@ interface Props {
 
 const {
   title,
+  ogTitle,
   description = "Full stack developer portfolio and blog.",
   ogType = "website",
   ogImage,
   articlePublishedTime,
 } = Astro.props;
+
+const shareTitle = ogTitle ?? title;
 
 const canonicalUrl =
   Astro.site != null ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -39,7 +43,7 @@ const twitterCard = ogImage ? "summary_large_image" : "summary";
     <meta name="description" content={description} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={shareTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
@@ -67,7 +71,7 @@ const twitterCard = ogImage ? "summary_large_image" : "summary";
     }
 
     <meta name="twitter:card" content={twitterCard} />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={shareTitle} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage.url} />}
     <script is:inline>
