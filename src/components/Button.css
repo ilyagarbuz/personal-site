@@ -21,6 +21,10 @@
   color: #fff;
 }
 
+[data-theme="light"] .btn--ghost {
+  color: var(--color-text);
+}
+
 .btn:hover {
   background: var(--color-accent-hover);
   color: var(--color-bg);
