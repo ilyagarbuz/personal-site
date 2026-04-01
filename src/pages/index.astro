@@ -13,6 +13,7 @@ import {
   Lock,
   Wallet,
   Store,
+  ArrowRight,
 } from "@lucide/astro";
 import GithubIcon from "../assets/icons/github.svg";
 import { getCollection } from "astro:content";
@@ -209,7 +210,10 @@ function formatDate(d: Date) {
             }
           </div>
           <p class="section-footer-link">
-            <a href="/blog/">View all posts</a>
+            <a href="/blog/"
+              >View all posts
+              <ArrowRight size={18} stroke-width={1.75} aria-hidden="true" />
+            </a>
           </p>
         </section>
       </div>

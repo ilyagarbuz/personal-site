@@ -207,6 +207,12 @@
   font-size: 0.95rem;
 }
 
+.section-footer-link a {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
 .blog-card__actions {
   margin-top: auto;
 }
