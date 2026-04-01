@@ -48,7 +48,7 @@
   --color-border-strong: rgba(20, 18, 15, 0.2);
   --color-accent: #2d6a4f;
   --color-accent-hover: #1b4332;
-  --header-compact-bg: rgba(255, 255, 255, 0.85);
+  --header-compact-bg: rgba(255, 255, 255, 0);
   --focus-ring: 0 0 0 3px rgba(45, 106, 79, 0.35);
   --body-gradient: radial-gradient(
       ellipse 120% 80% at 10% -10%,
@@ -74,7 +74,7 @@
   --color-border-strong: rgba(242, 239, 232, 0.18);
   --color-accent: #7ce3ac;
   --color-accent-hover: #9cf0c4;
-  --header-compact-bg: rgba(30, 28, 25, 0.88);
+  --header-compact-bg: rgba(30, 28, 25, 0);
   --focus-ring: 0 0 0 3px rgba(124, 227, 172, 0.35);
   --body-gradient: radial-gradient(
       ellipse 100% 70% at 12% 0%,
