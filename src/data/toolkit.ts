@@ -20,7 +20,7 @@ export const toolkit: ToolkitCategory[] = [
   },
   {
     title: "Backend",
-    items: ["Node.js", "MongoDB"],
+    items: ["Node.js", "MongoDB", "Express", "REST API"],
   },
   {
     title: "Tools",
