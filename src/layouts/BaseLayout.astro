@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import profileImage from "../assets/images/profile_image.jpg";
 
 interface OgImage {
   url: string;
@@ -17,9 +18,12 @@ interface Props {
 }
 
 const defaultOgImage: OgImage = {
-  url: new URL("/assets/images/profile-image.jpg", Astro.site).href,
-  width: 600,
-  height: 600,
+  url:
+    Astro.site != null
+      ? new URL(profileImage.src, Astro.site).href
+      : profileImage.src,
+  width: profileImage.width,
+  height: profileImage.height,
 };
 
 const {
