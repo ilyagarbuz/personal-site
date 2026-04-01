@@ -16,12 +16,18 @@ interface Props {
   articlePublishedTime?: string;
 }
 
+const defaultOgImage: OgImage = {
+  url: new URL("/assets/images/profile-image.jpg", Astro.site).href,
+  width: 600,
+  height: 600,
+};
+
 const {
   title,
   ogTitle,
   description = "Full stack developer portfolio and blog.",
   ogType = "website",
-  ogImage,
+  ogImage = defaultOgImage,
   articlePublishedTime,
 } = Astro.props;
 
