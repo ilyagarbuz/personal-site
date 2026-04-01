@@ -1,12 +1,31 @@
 ---
 import "../styles/global.css";
 
+interface OgImage {
+  url: string;
+  width?: number;
+  height?: number;
+}
+
 interface Props {
   title: string;
   description?: string;
+  ogType?: "website" | "article";
+  ogImage?: OgImage;
+  articlePublishedTime?: string;
 }
 
-const { title, description = "Full stack developer portfolio and blog." } = Astro.props;
+const {
+  title,
+  description = "Full stack developer portfolio and blog.",
+  ogType = "website",
+  ogImage,
+  articlePublishedTime,
+} = Astro.props;
+
+const canonicalUrl =
+  Astro.site != null ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const twitterCard = ogImage ? "summary_large_image" : "summary";
 ---
 
 <!doctype html>
@@ -18,6 +37,39 @@ const { title, description = "Full stack developer portfolio and blog." } = Astr
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:site_name" content="Ilya Garbuz" />
+    {
+      ogImage && (
+        <>
+          <meta property="og:image" content={ogImage.url} />
+          {ogImage.width != null && (
+            <meta property="og:image:width" content={String(ogImage.width)} />
+          )}
+          {ogImage.height != null && (
+            <meta property="og:image:height" content={String(ogImage.height)} />
+          )}
+        </>
+      )
+    }
+    {
+      articlePublishedTime && ogType === "article" && (
+        <meta
+          property="article:published_time"
+          content={articlePublishedTime}
+        />
+      )
+    }
+
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage.url} />}
     <script is:inline>
       (function () {
         var k = "site-theme";
