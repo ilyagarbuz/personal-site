@@ -22,6 +22,7 @@ import { getCollection } from "astro:content";
 import { projects } from "../data/projects";
 import { experience } from "../data/experience";
 import { toolkit } from "../data/toolkit";
+import { profile, profilePageTitle } from "../data/profile";
 
 const projectIcons = {
   layout: LayoutDashboard,
@@ -45,7 +46,7 @@ function formatDate(d: Date) {
 }
 ---
 
-<BaseLayout title="Ilya Garbuz — Full Stack Developer">
+<BaseLayout title={profilePageTitle()}>
   <div class="page">
     <Header />
     <main id="main">
@@ -53,22 +54,19 @@ function formatDate(d: Date) {
         <section class="section hero" aria-labelledby="hero-name">
           <div class="hero__inner">
             <div class="hero__content">
-              <h1 id="hero-name" class="hero__name">Ilya Garbuz</h1>
-              <p class="hero__role">Full Stack Developer</p>
-              <p class="hero__lede">
-                Crafting scalable web applications with modern tools: resilient
-                APIs, polished interfaces, and deployments you can reason about.
-              </p>
-              <Button
-                href="/ilya_garbuz_cv.pdf"
-                download="ilya_garbuz_cv.pdf"
-                icon="download">Download Resume</Button
-              >
+              <h1 id="hero-name" class="hero__name">
+                {profile.name}
+              </h1>
+              <p class="hero__role">{profile.role}</p>
+              <p class="hero__lede">{profile.summary}</p>
+              <Button href="/ilya_garbuz_cv.pdf" icon="download">
+                Download Resume
+              </Button>
             </div>
             <div class="hero__media">
               <Image
                 src={profileImage}
-                alt="Ilya Garbuz"
+                alt={profile.name}
                 class="hero__photo"
                 width={500}
                 height={500}

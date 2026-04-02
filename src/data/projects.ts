@@ -26,7 +26,7 @@ export const projects: Project[] = [
   },
   {
     title: "Arlight",
-    description: `Full-stack development of a corporate B2B website for a premium LED lighting manufacturer. Developed and maintained the flagship corporate website for Arlight, a market leader with over 25 years of history and a product range of 10,000+ SKUs. Implemented key marketing and partnership functionalities, including a loyalty program portal for designers ("My.Arlight") to support wholesale and project-based sales. Built an educational content hub featuring webinars, training videos, and certified programs to support the company’s partner training initiatives. Integrated modules for multi-channel customer support and service management, ensuring seamless access to technical documentation and product information for B2B clients.`,
+    description: `Full-stack development of a corporate B2С website for a premium LED lighting manufacturer. Developed and maintained the flagship corporate website for Arlight, a market leader with over 25 years of history. Implemented key marketing and partnership functionalities, including a loyalty program portal for designers ("My.Arlight") to support wholesale and project-based sales. Built an educational content hub featuring webinars, training videos, and certified programs to support the company’s partner training initiatives. Integrated modules for multi-channel customer support and service management, ensuring seamless access to technical documentation and product information for B2B clients.`,
     tags: "Web App • E-commerce • Nuxt • Node.js • MongoDB",
     icon: "store",
     links: [
@@ -64,7 +64,7 @@ Used Vite for builds and packaging (build, package for store-ready zip), with a 
       },
       {
         type: "external",
-        href: "https://chromewebstore.google.com/detail/ojcbbobkmakkaoclhoiigmgkjnkecggf?utm_source=item-share-cb",
+        href: "https://chromewebstore.google.com/detail/ojcbbobkmakkaoclhoiigmgkjnkecggf",
       },
     ],
   },
