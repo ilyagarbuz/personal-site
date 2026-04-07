@@ -1,0 +1,180 @@
+---
+import Card from "./Card.astro";
+import { Image } from "astro:assets";
+import profileImage from "../assets/images/profile_image.jpg";
+import type { ResumeUiLabels } from "../data/resume-ui.en";
+import type { ExperienceItem } from "../data/experience";
+import type { Project } from "../data/projects";
+import type { ToolkitCategory } from "../data/toolkit";
+import { social } from "../data/social";
+import { contactVisibleUrl, resumeProjectLinks } from "../lib/resume";
+
+interface ProfileSlice {
+  readonly name: string;
+  readonly role: string;
+  readonly summary: string;
+}
+
+interface Props {
+  profile: ProfileSlice;
+  experience: ExperienceItem[];
+  projects: Project[];
+  toolkit: ToolkitCategory[];
+  labels: ResumeUiLabels;
+  locale: "en" | "ru";
+}
+
+const { profile, experience, projects, toolkit, labels, locale } =
+  Astro.props;
+
+const contactItems = [
+  { label: labels.contactWebsite, href: social.website },
+  { label: labels.contactGithub, href: social.github },
+  { label: labels.contactLinkedin, href: social.linkedin },
+  { label: labels.contactEmail, href: social.email },
+] as const;
+---
+
+<main class="resume container">
+  <nav class="resume-lang" aria-label={labels.langNavAria}>
+    <a
+      class="resume-lang__link"
+      href="/resume"
+      hreflang="en"
+      lang="en"
+      aria-current={locale === "en" ? "page" : undefined}
+    >
+      {labels.langEnglish}
+    </a>
+    <span class="resume-lang__sep" aria-hidden="true">·</span>
+    <a
+      class="resume-lang__link"
+      href="/resume-ru"
+      hreflang="ru"
+      lang="ru"
+      aria-current={locale === "ru" ? "page" : undefined}
+    >
+      {labels.langRussian}
+    </a>
+  </nav>
+
+  <header class="resume-hero" aria-labelledby="resume-hero-name">
+    <div class="resume-hero__inner">
+      <div class="resume-hero__content">
+        <h1 id="resume-hero-name" class="resume-hero__name">
+          {profile.name}
+        </h1>
+        <p class="resume-hero__role">{profile.role}</p>
+        <p class="resume-hero__lede">{profile.summary}</p>
+        <ul class="resume-contacts">
+          {
+            contactItems.map(({ label, href }) => (
+              <li class="resume-contact">
+                <span class="resume-contact__label">{label}</span>
+                <a class="resume-contact__url" href={href}>
+                  {contactVisibleUrl(href)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="resume-hero__media">
+        <Image
+          src={profileImage}
+          alt={profile.name}
+          class="resume-hero__photo"
+          width={500}
+          height={500}
+        />
+      </div>
+    </div>
+  </header>
+
+  <section class="resume-section" aria-labelledby="resume-experience">
+    <h2 id="resume-experience" class="section__title">
+      {labels.sectionExperience}
+      <span class="section__title-divider" aria-hidden="true"></span>
+    </h2>
+    <div class="resume-stack">
+      {
+        experience.map((job) => (
+          <Card>
+            <div class="resume-card-head">
+              <div>
+                <h3 class="resume-card-role">{job.role}</h3>
+                <p class="resume-card-company">{job.company}</p>
+              </div>
+              <p class="resume-card-period">{job.period}</p>
+            </div>
+            <ul class="resume-card-list">
+              {job.duties.map((duty) => (
+                <li>{duty}</li>
+              ))}
+            </ul>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-projects">
+    <h2 id="resume-projects" class="section__title">
+      {labels.sectionProjects}
+      <span class="section__title-divider" aria-hidden="true"></span>
+    </h2>
+    <div class="resume-stack">
+      {
+        projects.map((p) => {
+          const links = resumeProjectLinks(p);
+          return (
+            <Card>
+              <h3 class="resume-card-role resume-card-role--plain">
+                {p.title}
+              </h3>
+              {links.length > 0 && (
+                <p class="resume-project-links">
+                  {links.map((link) => (
+                    <a
+                      class="resume-project-link"
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {contactVisibleUrl(link.href)}
+                    </a>
+                  ))}
+                </p>
+              )}
+              <p class="resume-project-desc">{p.description}</p>
+              <p class="resume-project-tags">{p.tags}</p>
+            </Card>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <section class="resume-section" aria-labelledby="resume-skills">
+    <h2 id="resume-skills" class="section__title">
+      {labels.sectionToolkit}
+      <span class="section__title-divider" aria-hidden="true"></span>
+    </h2>
+    <Card class="resume-toolkit-card">
+      <div class="resume-toolkit-grid">
+        {
+          toolkit.map((cat) => (
+            <div class="resume-toolkit-group">
+              <h3 class="resume-toolkit-heading">{cat.title}</h3>
+              <div class="resume-toolkit-chips">
+                {cat.items.map((item) => (
+                  <span class="resume-chip">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Card>
+  </section>
+</main>

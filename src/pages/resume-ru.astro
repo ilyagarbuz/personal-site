@@ -1,0 +1,20 @@
+---
+import ResumeLayout from "../layouts/ResumeLayout.astro";
+import ResumeContent from "../components/ResumeContent.astro";
+import { profileRu, profilePageTitleRu } from "../data/profile.ru";
+import { experienceRu } from "../data/experience.ru";
+import { projectsRu } from "../data/projects.ru";
+import { toolkitRu } from "../data/toolkit.ru";
+import { resumeUiRu } from "../data/resume-ui.ru";
+---
+
+<ResumeLayout title={`Резюме — ${profilePageTitleRu()}`} lang="ru">
+  <ResumeContent
+    profile={profileRu}
+    experience={experienceRu}
+    projects={projectsRu}
+    toolkit={toolkitRu}
+    labels={resumeUiRu}
+    locale="ru"
+  />
+</ResumeLayout>

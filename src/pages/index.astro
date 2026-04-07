@@ -23,6 +23,8 @@ import { projects } from "../data/projects";
 import { experience } from "../data/experience";
 import { toolkit } from "../data/toolkit";
 import { profile, profilePageTitle } from "../data/profile";
+import { resumeUiEn } from "../data/resume-ui.en";
+import { resumeUiRu } from "../data/resume-ui.ru";
 
 const projectIcons = {
   layout: LayoutDashboard,
@@ -36,6 +38,8 @@ const allPosts = await getCollection("blog");
 const latestPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+const defaultResumePdfHref = resumeUiEn.resumePdfHref;
+const resumePdfHrefRu = resumeUiRu.resumePdfHref;
 
 function formatDate(d: Date) {
   return d.toLocaleDateString("en-US", {
@@ -59,9 +63,15 @@ function formatDate(d: Date) {
               </h1>
               <p class="hero__role">{profile.role}</p>
               <p class="hero__lede">{profile.summary}</p>
-              <Button href="/ilya_garbuz_cv.pdf" icon="download">
-                Download Resume
-              </Button>
+              <div
+                data-resume-download-link
+                data-resume-href-en={defaultResumePdfHref}
+                data-resume-href-ru={resumePdfHrefRu}
+              >
+                <Button href={defaultResumePdfHref} icon="download">
+                  Download Resume
+                </Button>
+              </div>
             </div>
             <div class="hero__media">
               <Image
@@ -233,4 +243,24 @@ function formatDate(d: Date) {
     </main>
     <Footer />
   </div>
+  <script is:inline>
+    (() => {
+      const container = document.querySelector("[data-resume-download-link]");
+      if (!(container instanceof HTMLElement)) {
+        return;
+      }
+
+      const link = container.querySelector("a");
+      if (!(link instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const lang = (navigator.language || "").toLowerCase();
+      const isRussian = lang.startsWith("ru");
+      const hrefEn = container.dataset.resumeHrefEn;
+      const hrefRu = container.dataset.resumeHrefRu;
+
+      link.href = isRussian ? hrefRu || link.href : hrefEn || link.href;
+    })();
+  </script>
 </BaseLayout>
