@@ -58,4 +58,8 @@ Supported in `UIEvent`, `AnimationEvent`, and `TransitionEvent`.
 
 Keep an eye on **Autofill Events**. Soon we'll be able to reliably catch when the browser autofills a form, allowing us to validate fields instantly instead of guessing or waiting for user input.
 
-This release isn't flashy, but it's incredibly solid. `contrast-color` and scoped view transitions are going straight into production this week
+---
+
+_For the complete list of changes, including WebXR Plane Detection, IWA Web Printing API, and LNA restrictions, check out the **official Chrome 147 release notes** on Chrome for Developers:_<a href="https://developer.chrome.com/release-notes/147" target="_blank" rel="noopener noreferrer">
+<i>Chrome 147 release notes</i>
+</a>
