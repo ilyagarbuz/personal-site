@@ -9,7 +9,7 @@ import { getCollection } from "astro:content";
 import "../../styles/home.css";
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 function formatDate(d: Date) {
@@ -21,7 +21,10 @@ function formatDate(d: Date) {
 }
 ---
 
-<BaseLayout title="Blog — Ilya Garbuz" description="Thoughts on web development, tools, and learning.">
+<BaseLayout
+  title="Blog — Ilya Garbuz"
+  description="Thoughts on web development, tools, and learning."
+>
   <div class="page">
     <Header />
     <main id="main" class="container section">
@@ -42,12 +45,13 @@ function formatDate(d: Date) {
           posts.map((post) => (
             <Card class="blog-preview__card">
               <p class="blog-card__meta">
-                {formatDate(post.data.pubDate)} · {post.data.readingTime} min read
+                {formatDate(post.data.pubDate)} · {post.data.readingTime} min
+                read
               </p>
               <h2 class="blog-list-title">{post.data.title}</h2>
               <p>{post.data.description}</p>
               <div class="blog-card__actions">
-                <Button href={`/blog/${post.slug}/`} variant="ghost">
+                <Button href={`/blog/${post.id}/`} variant="ghost">
                   Read more
                 </Button>
               </div>
