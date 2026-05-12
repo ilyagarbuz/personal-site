@@ -7,8 +7,6 @@ readingTime: 5
 coverImage: "../../assets/images/blog/articles/chrome-148/chrome-148.jpg"
 ---
 
-**Title: Chrome 148: Container Queries Without Types, AI in the Browser, and SharedWorker's Comeback**
-
 Chrome 148 (May 2026) is here, and this release is packed. We're getting CSS quality-of-life improvements that remove old annoying constraints, a brand-new Prompt API that brings on-device AI directly to web apps, and the return of SharedWorker on Android. Let's break down what matters most.
 
 #### 🎨 CSS Wins: Bare-Name Containers, `revert-rule`, and Smarter Underlines
